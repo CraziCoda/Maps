@@ -15,6 +15,7 @@ let map = new H.Map(
         center: { lng: -0.19583000242710114, lat: 5.544439792633057 }
     });
 
+
 let options = {
     enableHighAccuracy: true,
     timeout: 10000,
