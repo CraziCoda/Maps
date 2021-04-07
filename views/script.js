@@ -4,7 +4,7 @@ let socket = io('ws://localhost:2000/');
 let id = 'as20';
 
 const platform = new H.service.Platform({
-    'apikey': 'apikey-goes-here'
+    'apikey': '06XnMczbOVeSgkXJUUu_LsV8o3DFvz--1oyZTINYsMA'
 });
 const maptypes = platform.createDefaultLayers();
 let map = new H.Map(
@@ -30,8 +30,6 @@ function success(pos) {
     map.addObject(marker);
     map.setCenter(crds);
     
-    socket.emit("location", {crds, timestamp: pos.timestamp, id: id});
-    //console.log(pos);
   }
   
 function error(err) {
@@ -43,21 +41,3 @@ let getLocation = () =>{
 }
 
 getLocation();
-
-
-socket.on('update', (data)=>{
-    for(let i = 0;i < data.length;i++){
-        let crds = {lat: data[i].lat, lng: data[i].lng};
-        let icon;
-        if(data[i].receivers.includes(id)){
-            icon = new H.map.Icon('./icons/green.png');
-        }else{
-            icon = new H.map.Icon('./icons/red.png');
-        }
-        console.log(crds);
-        let marker = new H.map.Marker(crds, {icon: icon});
-
-        map.addObject(marker);
-
-    }
-})
