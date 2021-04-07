@@ -30,6 +30,8 @@ function success(pos) {
 
     map.addObject(marker);
     map.setCenter(crds);
+
+    console.log(pos);
     
   }
   
