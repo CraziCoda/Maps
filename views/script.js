@@ -1,4 +1,4 @@
-let socket = io('ws://localhost:2000/');
+let socket = io();
 
 //made a test user id variable for testing
 let id = 'as20';
