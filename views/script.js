@@ -29,7 +29,7 @@ function success(pos) {
         marker = new H.map.Marker(crds, {icon: icon});
 
     map.addObject(marker);
-    //map.setCenter(crds);
+    map.setCenter(crds);
 
     console.log(pos);
     
