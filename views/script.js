@@ -23,8 +23,8 @@ let options = {
     maximumAge: 0
   };
 
-let ui = H.ui.UI.createDefault(map, maptypes, "en-US");
-ui.getControl('zoom').setDisabled(false)
+let ui = new H.ui.UI.createDefault(map, maptypes, "en-US");
+ui.getControl('zoom').setDisabled(false);
   
 function success(pos) {
     let crd = pos.coords;
