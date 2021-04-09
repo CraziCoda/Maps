@@ -12,7 +12,7 @@ let map = new H.Map(
     maptypes.vector.normal.map,
     {
         zoom: 12,
-        center: { lng: -0.19583000242710114, lat: 5.544439792633057 }
+        center: {  lat: 5.544439792633057, lng: -0.19583000242710114 }
     });
 
 
