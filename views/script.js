@@ -41,6 +41,7 @@ function success(pos) {
   
 function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
+    alert("Couldn't Connect \n check internet connectivity");
   }
 
 let getLocation = () =>{
