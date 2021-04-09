@@ -7,12 +7,13 @@ const platform = new H.service.Platform({
     'apikey': '06XnMczbOVeSgkXJUUu_LsV8o3DFvz--1oyZTINYsMA'
 });
 const maptypes = platform.createDefaultLayers();
+
 let map = new H.Map(
     document.getElementById('mapContainer'),
     maptypes.vector.normal.map,
     {
         zoom: 12,
-        //center: {  lat: 5.544439792633057, lng: -0.19583000242710114 }
+        center: {  lat: 5.544439792633057, lng: -0.19583000242710114 }
     });
 
 
@@ -21,8 +22,8 @@ let options = {
     timeout: 10000,
     maximumAge: 0
   };
-  
-let ui = H.ui.UI.createDefault(map, defaultLayers);
+
+let ui = H.ui.UI.createDefault(map, maptypes);
 ui.getControl('zoom').setDisabled(false)
   
 function success(pos) {
