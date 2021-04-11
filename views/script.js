@@ -1,7 +1,7 @@
 let socket = io();
 
 //made a test user id variable for testing
-let id = 'as20';
+let id = getParameterByName('id');
 
 const platform = new H.service.Platform({
     'apikey': '06XnMczbOVeSgkXJUUu_LsV8o3DFvz--1oyZTINYsMA'
@@ -35,8 +35,8 @@ function success(pos) {
     map.addObject(marker);
     map.setCenter(crds);
 
-    console.log(pos);
-    
+    //sending new location to backend
+    socket.emit('newLocation', {crds, id});
   }
   
 function error(err) {
@@ -49,3 +49,24 @@ let getLocation = () =>{
 }
 
 getLocation();
+
+
+//From StackOverFlow
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+//Handling Socket events
+socket.on('updateLocation', (data)=>{
+    for(let i = 0;i < data.users.length;i++){
+        if(data.users[i] == getParameterByName(id)) continue;
+        let icon = new H.map.Icon('./icons/green.png');
+        marker = new H.map.Marker(data.database[i], {icon: icon});
+        map.addObject(marker);
+    }
+})
