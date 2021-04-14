@@ -1,4 +1,4 @@
-let map, options;
+let map, options, userLocationMarker;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -12,6 +12,11 @@ function initMap() {
     maximumAge: 0
   };
 
+  userLocationMarker  = new google.maps.Marker({
+    position: { lat: 7.9465, lng: 1.0232 },
+    map: map
+  });
+
   //Location Found
   let success = (postion) =>{
     //console.log(postion);
@@ -21,10 +26,9 @@ function initMap() {
     }
     map.setCenter(coordinates);
 
-    let marker  = new google.maps.Marker({
-      position: coordinates,
-      map: map
-    });
+    //userLocationMarker.setMap(null);
+    userLocationMarker.setPosition(coordinates);
+
 
     console.log(coordinates);
   }
