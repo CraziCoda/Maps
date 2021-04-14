@@ -26,7 +26,6 @@ function initMap() {
     }
     map.setCenter(coordinates);
 
-    //userLocationMarker.setMap(null);
     userLocationMarker.setPosition(coordinates);
     userLocationMarker.setTitle('You');
 
@@ -45,6 +44,5 @@ function initMap() {
   }else{
     console.log('Unsupported browser');
   }
-
 
 }
