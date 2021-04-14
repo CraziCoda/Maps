@@ -28,7 +28,7 @@ function initMap() {
 
     //userLocationMarker.setMap(null);
     userLocationMarker.setPosition(coordinates);
-    userLocationMarker.setLabel('You');
+    userLocationMarker.setTitle('You');
 
     console.log(coordinates);
   }
