@@ -61,6 +61,7 @@ function initMap() {
       if(others.includes(data.users[i])){
         //Hmmm
         let marker = markers[i];
+        console.log(marker.getPosition());
         marker.setPosition(data.database[i]);
 
       }else{
