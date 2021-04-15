@@ -6,8 +6,6 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
 const routes = require('./routes/routes.js');
-
-
 const PORT = process.env.PORT || 2000;
 
 //pseudodatabase
