@@ -59,7 +59,7 @@ function initMap() {
 
       //Search for others
       if(others.includes(data.users[i])){
-        console.log('Already Available')
+        console.log('Already Available');
       }else{
         //Add new data
         others.push(data.users[i]);
@@ -69,7 +69,7 @@ function initMap() {
           icon: icon
         });
         markers.push(marker);
-        console.log("Added")
+        console.log("Added");
       }
      //console.log(others, markers);
     }
