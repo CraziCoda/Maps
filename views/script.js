@@ -59,7 +59,11 @@ function initMap() {
 
       //Search for others
       if(others.includes(data.users[i])){
-        console.log('Already Available');
+        
+        markers[i].setPosition(data.database[i]);
+        markers[i].setTitle(data.users[i]);
+        console.log('Update');
+
       }else{
         //Add new data
         others.push(data.users[i]);
