@@ -52,15 +52,12 @@ function initMap() {
   //Add other user and update
   socket.on('updateLocation', (data)=>{
 
-    for(let i = 0;i < data.users.length;i++){
-
-      //remove me
-      if(data.users[i] == user) continue;
-
+    /* for(let i = 0;i < data.users.length;i++){
       //Search for others
       if(others.includes(data.users[i])){
         //Hmmm
         let marker = markers[i];
+        console.log(marker, i);
         console.log(marker.getPosition());
         marker.setPosition(data.database[i]);
 
@@ -75,8 +72,33 @@ function initMap() {
         markers.push(marker);
         console.log("Added");
       }
-     //console.log(others, markers);
+    } */
+
+    for(let i = 0;i < data.users.length;i++){
+      if(data.users[i] != user){
+        if(!others.includes(data.users[i])){
+          others.push(data.users[i]);
+          let marker = new google.maps.Marker({
+            position: data.database[i],
+            map: map,
+            icon: icon
+          });
+          markers.push(marker);
+          console.log("Added", data.users[i]);
+        }
+      }
     }
+
+    for(let i = 0; i < data.users.length;i++){
+      let index = others.indexOf(data.users[i])
+      if(index > -1){
+        console.log(i, index);
+        let marker = markers[index];
+        marker.setPosition(data.database[i])
+      }
+      
+    }
+
   });
 
 }
