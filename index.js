@@ -29,9 +29,13 @@ io.on('connection', (socket)=>{
             database[index].lat = data.coordinates.lat;
             database[index].lng = data.coordinates.lng;
         }else{
-            if(data.id == null) return 0;
-            users.push(data.id);
-            database.push(data.coordinates);            
+            if(data.id == null){
+                console.log('Null')
+            }else{
+                users.push(data.id);
+                database.push(data.coordinates); 
+            }
+                       
         }
     });
 
