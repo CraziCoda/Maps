@@ -1,4 +1,4 @@
-let map, options, userLocationMarker, user, socket, others = [];
+let map, options, userLocationMarker, user, socket, others = [], markers = [];
 
 user = getParameterByName('id');
 socket = io();
@@ -50,7 +50,27 @@ function initMap() {
 
   //Add other user and update
   socket.on('updateLocation', (data)=>{
-    console.log(data);
+
+    for(let i = 0;i < data.users.length;i++){
+
+      //remove me
+      if(data.users[i] == user) continue;
+
+      //Search for others
+      if(others.includes(data.users[i])){
+        console.log('Already Available')
+      }else{
+        //Add new data
+        others.push(data.users[i]);
+        let marker = new google.maps.Marker({
+          position: data.database[i],
+          map: map
+        });
+        markers.push(marker);
+        console.log("Added")
+      }
+     //console.log(others, markers);
+    }
   });
 
 }
