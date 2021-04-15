@@ -1,7 +1,8 @@
-let map, options, userLocationMarker, user, socket, others = [], markers = [];
+let map, options, userLocationMarker, user, socket, others = [], markers = [], icon;
 
 user = getParameterByName('id');
 socket = io();
+icon = "./icons/motorcycle.png";
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -64,7 +65,8 @@ function initMap() {
         others.push(data.users[i]);
         let marker = new google.maps.Marker({
           position: data.database[i],
-          map: map
+          map: map,
+          icon: icon
         });
         markers.push(marker);
         console.log("Added")
