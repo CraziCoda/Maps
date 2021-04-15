@@ -28,11 +28,11 @@ io.on('connection', (socket)=>{
         //Store on DataBase if any
         if(users.includes(data.id)){
             let index = users.indexOf(data.id);
-            database[index].lat = data.crds.lat;
-            database[index].lng = data.crds.lng;
+            database[index].lat = data.coordinates.lat;
+            database[index].lng = data.coordinates.lng;
         }else{
             users.push(data.id);
-            database.push(data.crds);            
+            database.push(data.coordinates);            
         }
     });
 
