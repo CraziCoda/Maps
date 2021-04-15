@@ -59,8 +59,9 @@ function initMap() {
 
       //Search for others
       if(others.includes(data.users[i])){
-        
-        console.log(markers[i]);
+        //Hmmm
+        let marker = markers[i];
+        marker.setPosition(data.database[i]);
 
       }else{
         //Add new data
