@@ -113,14 +113,55 @@ function getParameterByName(name, url = window.location.href) {
 }
 
 //Device orientation
-window.addEventListener('deviceorientation', handleorientation, false);
+let heading;
+let out = document.getElementById('events');
 
-function handleorientation(event){
-  let out = document.getElementById('events');
-  let absolute = event.absolute;
-  let alpha    = event.alpha;
-  let beta     = event.beta;
-  let gamma    = event.gamma;
+window.addEventListener('deviceorientation', handleOrientation, false);
 
-  out.innerHTML = `device orientation: ${absolute} ${alpha} ${beta} ${gamma}`;
-}
+const handleOrientation = (event) => {
+    if(event.webkitCompassHeading) {
+        // some devices don't understand "alpha" (especially IOS devices)
+        heading = event.webkitCompassHeading;
+    }
+    else{
+        heading = compassHeading(event.alpha, event.beta, event.gamma);
+    }
+};
+
+const compassHeading = (alpha, beta, gamma) => {
+
+    // Convert degrees to radians
+    const alphaRad = alpha * (Math.PI / 180);
+    const betaRad = beta * (Math.PI / 180);
+    const gammaRad = gamma * (Math.PI / 180);
+
+    // Calculate equation components
+    const cA = Math.cos(alphaRad);
+    const sA = Math.sin(alphaRad);
+    const cB = Math.cos(betaRad);
+    const sB = Math.sin(betaRad);
+    const cG = Math.cos(gammaRad);
+    const sG = Math.sin(gammaRad);
+
+    // Calculate A, B, C rotation components
+    const rA = - cA * sG - sA * sB * cG;
+    const rB = - sA * sG + cA * sB * cG;
+    const rC = - cB * cG;
+
+    // Calculate compass heading
+    let compassHeading = Math.atan(rA / rB);
+
+    // Convert from half unit circle to whole unit circle
+    if(rB < 0) {
+        compassHeading += Math.PI;
+    }else if(rA < 0) {
+        compassHeading += 2 * Math.PI;
+    }
+
+    // Convert radians to degrees
+    compassHeading *= 180 / Math.PI;
+
+    return compassHeading;
+};
+
+out.innerHTML = `Device: ${heading}`
