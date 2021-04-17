@@ -116,7 +116,7 @@ function getParameterByName(name, url = window.location.href) {
 window.addEventListener('deviceorientation', handleorientation, false);
 
 function handleorientation(event){
-  
+  let out = document.getElementById('events');
   let absolute = event.absolute;
   let alpha    = event.alpha;
   let beta     = event.beta;
