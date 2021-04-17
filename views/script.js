@@ -116,7 +116,7 @@ function getParameterByName(name, url = window.location.href) {
 let heading;
 let out = document.getElementById('events');
 
-window.addEventListener('deviceorientation', handleOrientation, true);
+setTimeout(()=> window.addEventListener('deviceorientation', handleOrientation, true), 3000);
 
 const handleOrientation = (event) => {
     if(event.webkitCompassHeading) {
