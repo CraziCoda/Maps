@@ -113,8 +113,8 @@ function getParameterByName(name, url = window.location.href) {
 }
 
 //Device orientation
+//somecode from stackoverflow that does all the work
 let heading;
-
 
 setTimeout(()=> window.addEventListener('deviceorientation', handleOrientation, true), 3000);
 
