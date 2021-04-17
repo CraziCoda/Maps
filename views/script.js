@@ -165,5 +165,3 @@ const compassHeading = (alpha, beta, gamma) => {
 
     return compassHeading;
 };
-console.log(heading, out);
-out.innerHTML = `Device: ${heading}`;
