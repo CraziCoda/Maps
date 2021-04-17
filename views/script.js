@@ -127,7 +127,7 @@ const handleOrientation = (event) => {
     else{
         heading = compassHeading(event.alpha, event.beta, event.gamma);
     }
-    console.log(out);
+    console.log(heading);
 };
 
 const compassHeading = (alpha, beta, gamma) => {
