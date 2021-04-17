@@ -113,7 +113,7 @@ function getParameterByName(name, url = window.location.href) {
 }
 
 //Device orientation
-window.addEventListener('deviceorientation', handleorientation, false);
+window.addEventListener('deviceorientationabsolute', handleorientation, false);
 
 function handleorientation(event){
   let absolute = event.absolute;
