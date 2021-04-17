@@ -113,10 +113,10 @@ function getParameterByName(name, url = window.location.href) {
 }
 
 //Device orientation
-let out = document.getElementById('events');
 window.addEventListener('deviceorientation', handleorientation, false);
 
 function handleorientation(event){
+  let out = document.getElementById('events');
   let absolute = event.absolute;
   let alpha    = event.alpha;
   let beta     = event.beta;
