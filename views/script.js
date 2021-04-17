@@ -111,3 +111,16 @@ function getParameterByName(name, url = window.location.href) {
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+
+//Device orientation
+window.addEventListener('deviceorientation', handleorientation, false);
+
+function handleorientation(event){
+ /*  let absolute = event.absolute;
+  let alpha    = event.alpha;
+  let beta     = event.beta;
+  let gamma    = event.gamma;
+
+  alert(absolute+" "+alpha+" "+beta+" "+gamma); */
+  alert(event)
+}
