@@ -114,11 +114,12 @@ function getParameterByName(name, url = window.location.href) {
 
 //Device orientation
 let heading;
-let out = document.getElementById('events');
+
 
 setTimeout(()=> window.addEventListener('deviceorientation', handleOrientation, true), 3000);
 
 const handleOrientation = (event) => {
+    const out = document.getElementById('events');
     if(event.webkitCompassHeading) {
         // some devices don't understand "alpha" (especially IOS devices)
         heading = event.webkitCompassHeading;
@@ -126,6 +127,7 @@ const handleOrientation = (event) => {
     else{
         heading = compassHeading(event.alpha, event.beta, event.gamma);
     }
+    console.log(out);
 };
 
 const compassHeading = (alpha, beta, gamma) => {
