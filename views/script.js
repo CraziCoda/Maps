@@ -18,8 +18,18 @@ function initMap() {
 
   userLocationMarker  = new google.maps.Marker({
     position: { lat: 7.9465, lng: 1.0232 },
-    map: map
+    map: map,
+    icon: userSymbol
   });
+
+  userSymbol = {
+    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+    fillColor: 'blue',
+    fillOpacity: 0.6,
+    strokeWeight: 0,
+    rotation: 0,
+    scale: 2,
+  }
 
   //Location Found
   let success = (postion) =>{
