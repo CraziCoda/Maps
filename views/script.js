@@ -97,7 +97,6 @@ let heading;
 setTimeout(()=> window.addEventListener('deviceorientation', handleOrientation, true), 3000);
 
 const handleOrientation = (event) => {
-    const out = document.getElementById('events');
     if(event.webkitCompassHeading) {
         // some devices don't understand "alpha" (especially IOS devices)
         heading = event.webkitCompassHeading;
@@ -105,7 +104,6 @@ const handleOrientation = (event) => {
     else{
         heading = compassHeading(event.alpha, event.beta, event.gamma);
     }
-    out.innerHTML = `Device: ${heading}`;
     userLocationMarker.setIcon({
       path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
       fillColor: 'blue',
