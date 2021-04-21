@@ -51,29 +51,6 @@ function initMap() {
 
   //Add other user and update
   socket.on('updateLocation', (data)=>{
-
-    /* for(let i = 0;i < data.users.length;i++){
-      //Search for others
-      if(others.includes(data.users[i])){
-        //Hmmm
-        let marker = markers[i];
-        console.log(marker, i);
-        console.log(marker.getPosition());
-        marker.setPosition(data.database[i]);
-
-      }else{
-        //Add new data
-        others.push(data.users[i]);
-        let marker = new google.maps.Marker({
-          position: data.database[i],
-          map: map,
-          icon: icon
-        });
-        markers.push(marker);
-        console.log("Added");
-      }
-    } */
-
     for(let i = 0;i < data.users.length;i++){
       if(data.users[i] != user){
         if(!others.includes(data.users[i])){
@@ -101,18 +78,7 @@ function initMap() {
 
   });
 
-}
-
-function getParameterByName(name, url = window.location.href) {
-  name = name.replace(/[\[\]]/g, '\\$&');
-  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-      results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-
-//Device orientation
+  //Device orientation
 //somecode from stackoverflow that does all the work
 let heading;
 
@@ -165,3 +131,15 @@ const compassHeading = (alpha, beta, gamma) => {
 
     return compassHeading;
 };
+
+}
+
+function getParameterByName(name, url = window.location.href) {
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
