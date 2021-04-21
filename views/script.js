@@ -28,7 +28,7 @@ function initMap() {
   userLocationMarker  = new google.maps.Marker({
     position: { lat: 7.9465, lng: 1.0232 },
     map: map,
-    icon: userSymbol
+    //icon: userSymbol
   });
 
   
@@ -106,7 +106,14 @@ const handleOrientation = (event) => {
         heading = compassHeading(event.alpha, event.beta, event.gamma);
     }
     out.innerHTML = `Device: ${heading}`;
-
+    userLocationMarker.setIcon({
+      path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+      fillColor: 'blue',
+      fillOpacity: 0.6,
+      strokeWeight: 0,
+      rotation: heading || 0,
+      scale: 4,
+    });
 
 };
 
