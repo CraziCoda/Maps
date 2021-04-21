@@ -22,7 +22,7 @@ function initMap() {
     fillOpacity: 0.6,
     strokeWeight: 0,
     rotation: 0,
-    scale: 5,
+    scale: 4,
   }
 
   userLocationMarker  = new google.maps.Marker({
@@ -90,7 +90,7 @@ function initMap() {
 
   });
 
-  //Device orientation
+//Device orientation
 //somecode from stackoverflow that does all the work
 let heading;
 
@@ -105,7 +105,9 @@ const handleOrientation = (event) => {
     else{
         heading = compassHeading(event.alpha, event.beta, event.gamma);
     }
-    out.innerHTML = `Device: ${heading}`
+    out.innerHTML = `Device: ${heading}`;
+
+
 };
 
 const compassHeading = (alpha, beta, gamma) => {
