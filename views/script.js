@@ -16,12 +16,6 @@ function initMap() {
     maximumAge: 0
   };
 
-  userLocationMarker  = new google.maps.Marker({
-    position: { lat: 7.9465, lng: 1.0232 },
-    map: map,
-    icon: userSymbol
-  });
-
   userSymbol = {
     path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
     fillColor: 'blue',
@@ -30,6 +24,14 @@ function initMap() {
     rotation: 0,
     scale: 2,
   }
+
+  userLocationMarker  = new google.maps.Marker({
+    position: { lat: 7.9465, lng: 1.0232 },
+    map: map,
+    icon: userSymbol
+  });
+
+  
 
   //Location Found
   let success = (postion) =>{
