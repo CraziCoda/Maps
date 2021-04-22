@@ -12,8 +12,6 @@ const PORT = process.env.PORT || 2000;
 let database = [];
 let users = [];
 
-
-
 //this is for testing only 
 //to be extracted from a data base
 app.use(express.static('views'));
@@ -38,7 +36,6 @@ io.on('connection', (socket)=>{
                        
         }
     });
-
     setInterval(()=>{
         socket.emit('updateLocation', {database, users});
     }, 5000);
