@@ -6,6 +6,7 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
 const routes = require('./routes/routes.js');
+const signing = require('./routes/signing.route.js');
 const PORT = process.env.PORT || 2000;
 
 //pseudodatabase
@@ -45,7 +46,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use('/', routes.router);
-
+app.use('/sign', signing);
 
 
 

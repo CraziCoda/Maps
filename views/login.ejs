@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maps|| Login</title>
+    <title>Maps || Login</title>
     <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 
@@ -13,17 +13,17 @@
     <div class="container">
         <div class="formContainer">
             
-            <form id="login" method="POST" action="#">
-                <input class="input" type="text" placeholder="Phone No or Email"/><br>
-                <input class="input" type="password" placeholder="Password"/><br>
+            <form id="login" method="POST" action="/sign/in">
+                <input name="username"  class="input" type="text" placeholder="Phone No or Email"/><br>
+                <input  name="password" class="input" type="password" placeholder="Password"/><br>
                 <button type="submit" class="submitBtn">Login</button>
             </form>
 
-            <form id="signup" method="POST" action="#">
-                <input class="input" type="tel" placeholder="Phone No"/><br>
-                <input class="input" type="email" placeholder="Email"/><br>
-                <input class="input" type="password" placeholder="Password"/><br>
-                <input class="input" type="password" placeholder="Confirm password"/><br>
+            <form id="signup" method="POST" action="/sign/up">
+                <input class="input" name="phone" type="tel" placeholder="Phone No" minlength="10"/><br>
+                <input class="input" name="email" type="email" placeholder="Email" required /><br>
+                <input class="input" name="password" type="password" placeholder="Password" minlength="8" maxlength="16" required/><br>
+                <input class="input" name="cpassword" type="password" placeholder="Confirm password" minlength="8"  maxlength="16" required/><br>
                 <button type="submit" class="submitBtn">Signup</button>
             </form>
 
