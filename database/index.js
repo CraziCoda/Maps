@@ -6,7 +6,7 @@ let mongoUrlLocal = 'mongodb://localhost:27017/maps';
 
 
 
-mongoose.connect(mongoUrl,  
+mongoose.connect(mongoUrlLocal,  
     {useNewUrlParser: true, useUnifiedTopology: true },
     (err)=>{
         if(err) return console.log(`Error: ${err}`);
