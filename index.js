@@ -12,6 +12,7 @@ const dbConnection = require('./database');
 require('./config/passport');
 
 const routes = require('./routes/routes.js');
+const auth = require('./routes/auth');
 const PORT = process.env.PORT || 2000;
 
 //pseudodatabase
@@ -24,6 +25,7 @@ app.use(express.static('views'));
 app.use(cors());
 app.use(logger('dev'));
 app.use(passport.initialize());
+app.use(express.urlencoded({extended: true}));
 
 io.on('connection', (socket)=>{
     console.log('Connected');
@@ -54,6 +56,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use('/', routes.router);
+app.use('/auth', auth);
 
 
 

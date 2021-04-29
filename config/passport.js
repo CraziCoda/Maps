@@ -9,16 +9,17 @@ const passport = require('passport'),
 
 passport.use('register', 
     new localStrategy({
-        usernameField: 'email',
+        usernameField: 'username',
         passwordField: 'password'
     }, (username, password, done)=>{
+        console.log('Opened')
         try {
             User.findOne({email: username}).then(user => {
+                console.log(user);
                 if(user != null){
-                    console.log('Username taken');
                     return done(null, false, {messsage: 'username taken'});
                 }
-                User.create({username, password: encrypt.hash(password)}).then(user=>{
+                User.create({email: username, password: encrypt.hash(password)}).then(user=>{
                     console.log('Account created');
                     return done(null, user);
                 });
@@ -30,11 +31,11 @@ passport.use('register',
 
 passport.use('login', 
     new localStrategy({
-        usernameField: 'email',
+        usernameField: 'username',
         passwordField: 'password'
     }, (username, password, done)=>{
         try{
-            User.findone({username: username}).then(user => {
+            User.findOne({email: username}).then(user => {
                 if(user === null) return done(null, false, {message: 'an error occured'});
                 if(encrypt.confirm(password, user.password)) return done(null, user);
                 return done(null, false, {message: "Wrong password"});
@@ -43,3 +44,21 @@ passport.use('login',
             done(error);
         }
 }));
+
+let opts = {
+    jwtFromRequest :  ExtractJwt.fromAuthHeaderWithScheme('JWT'),
+    secretOrKey: jwtSecret
+}
+
+
+passport.use('jwt', new JWTstrategy(opts, (jwt_payload, done)=>{
+    try {
+        User.findOne({_id: jwt_payload.id}).then(user => {
+            if(user) return done(null, user);
+            return done(null, false)
+        });
+    } catch (error) {
+        done(error);
+    }
+}),
+);

@@ -8,3 +8,5 @@ function hash(value){
 function confirm(value, hash){
     return bcrypt.compare(value, hash);
 }
+
+module.exports = {hash, confirm}
