@@ -2,12 +2,16 @@ const express = require('express');
 const ejs  = require('ejs');
 const path = require('path');
 const app = express();
+const cors = require('cors');
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
+const logger = require('morgan');
+const passport = require('passport');
 const dbConnection = require('./database');
 
+require('./config/passport');
+
 const routes = require('./routes/routes.js');
-const signing = require('./routes/signing.route.js');
 const PORT = process.env.PORT || 2000;
 
 //pseudodatabase
@@ -17,6 +21,9 @@ let users = [];
 //this is for testing only 
 //to be extracted from a data base
 app.use(express.static('views'));
+app.use(cors());
+app.use(logger('dev'));
+app.use(passport.initialize());
 
 io.on('connection', (socket)=>{
     console.log('Connected');
@@ -30,7 +37,7 @@ io.on('connection', (socket)=>{
             database[index].lng = data.coordinates.lng;
         }else{
             if(data.id == null){
-                console.log('Null')
+                //console.log('Null')
             }else{
                 users.push(data.id);
                 database.push(data.coordinates); 
@@ -47,7 +54,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use('/', routes.router);
-app.use('/sign', signing);
 
 
 
