@@ -11,7 +11,7 @@ router.post("/register", (req, res, next) => {
   console.log(req.body);
   passport.authenticate("register", (err, user, info) => {
     if (err) return console.log(err);
-    if (info != undefined) return console.log(info);
+    if (info != undefined) return res.redirect("/forms");
     req.logIn(user, (err) => {
       const data = {
         phone: req.body.phone,

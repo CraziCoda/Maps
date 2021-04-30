@@ -15,10 +15,8 @@ passport.use(
       passwordField: "password",
     },
     (username, password, done) => {
-      console.log("Opened");
       try {
         User.findOne({ email: username }).then((user) => {
-          console.log(user);
           if (user != null) {
             return done(null, false, { messsage: "username taken" });
           }
