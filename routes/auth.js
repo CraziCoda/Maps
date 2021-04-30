@@ -22,6 +22,7 @@ router.post("/register", (req, res, next) => {
           phone: data.phone,
         }).then(() => {
           console.log("created");
+          res.redirect("/");
         });
       });
     });
