@@ -11,7 +11,10 @@ router.post("/register", (req, res, next) => {
   console.log(req.body);
   passport.authenticate("register", (err, user, info) => {
     if (err) return console.log(err);
-    if (info != undefined) return res.redirect("/forms");
+    if (info != undefined) {
+      console.log(info);
+      return res.redirect("/forms");
+    }
     req.logIn(user, (err) => {
       const data = {
         phone: req.body.phone,
@@ -22,7 +25,8 @@ router.post("/register", (req, res, next) => {
           phone: data.phone,
         }).then(() => {
           console.log("created");
-          res.redirect("/forms");
+          //req.flash("info", "Account Created Succesfully");
+          req.res.redirect("/forms");
         });
       });
     });

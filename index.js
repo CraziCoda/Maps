@@ -9,6 +9,7 @@ const logger = require("morgan");
 const passport = require("passport");
 const dbConnection = require("./database");
 const cookieParser = require("cookie-parser");
+const flash = require("connect-flash");
 
 const PORT = process.env.PORT || 2000;
 
@@ -24,7 +25,7 @@ app.use(cors());
 app.use(logger("dev"));
 app.use(passport.initialize());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(flash());
 require("./config/passport");
 
 const routes = require("./routes/routes.js");

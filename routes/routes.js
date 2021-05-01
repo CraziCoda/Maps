@@ -5,8 +5,11 @@ const passport = require("passport");
 router.get("/", (req, res, next) => {
   passport.authenticate("jwt", { session: false }, (err, user, info) => {
     if (err) return console.log(err);
-    if (info != undefined) return res.redirect("/forms");
-    return res.render("index");
+    if (info != undefined) {
+      console.log();
+      return res.redirect("/forms");
+    }
+    return res.render("index", { id: user._id });
   })(req, res, next);
 });
 
