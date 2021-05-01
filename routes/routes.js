@@ -6,7 +6,7 @@ router.get("/", (req, res, next) => {
   passport.authenticate("jwt", { session: false }, (err, user, info) => {
     if (err) return console.log(err);
     if (info != undefined) {
-      res.cookie("info", info.message);
+      if (info.message != "No auth token") res.cookie("info", info.message);
       return res.redirect("/forms");
     }
     return res.render("index", { id: user._id });
