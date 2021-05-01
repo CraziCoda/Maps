@@ -25,8 +25,8 @@ router.post("/register", (req, res, next) => {
           phone: data.phone,
         }).then(() => {
           console.log("created");
-          //req.flash("info", "Account Created Succesfully");
-          req.res.redirect("/forms");
+          res.cookie("info", "Account Created");
+          res.redirect("/forms");
         });
       });
     });
@@ -36,7 +36,10 @@ router.post("/register", (req, res, next) => {
 router.post("/login", (req, res, next) => {
   passport.authenticate("login", (err, user, info) => {
     if (err) return console.log(err);
-    if (info != undefined) return console.log(info);
+    if (info != undefined) {
+      res.cookie("info", info.message);
+      return res.redirect("/forms");
+    }
     req.logIn(user, (err) => {
       User.findOne({ email: user.email }).then(async (user) => {
         if (await encrypt.confirm(req.body.password, user.password)) {

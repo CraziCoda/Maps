@@ -44,11 +44,12 @@ passport.use(
     },
     (username, password, done) => {
       try {
-        User.findOne({ email: username }).then((user) => {
+        User.findOne({ email: username }).then(async (user) => {
           if (user === null)
-            return done(null, false, { message: "an error occured" });
-          if (encrypt.confirm(password, user.password)) return done(null, user);
-          return done(null, false, { message: "Wrong password" });
+            return done(null, false, { message: "Account Not Found" });
+          if (await encrypt.confirm(password, user.password))
+            return done(null, user);
+          done(null, false, { message: "Wrong password" });
         });
       } catch (error) {
         done(error);
