@@ -44,7 +44,7 @@ router.post("/login", (req, res, next) => {
       User.findOne({ email: user.email }).then(async (user) => {
         if (await encrypt.confirm(req.body.password, user.password)) {
           const token = jwt.sign({ id: user.email }, jwtSecret);
-          res.cookie("token", token);
+          res.cookie("token", token, { signed: true });
           res.redirect("/");
         }
       });

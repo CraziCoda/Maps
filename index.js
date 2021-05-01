@@ -9,7 +9,7 @@ const logger = require("morgan");
 const passport = require("passport");
 const dbConnection = require("./database");
 const cookieParser = require("cookie-parser");
-
+const cookieSecret = require("./config/cookieSecret").secret;
 const PORT = process.env.PORT || 2000;
 
 //pseudodatabase
@@ -18,7 +18,7 @@ let users = [];
 
 //this is for testing only
 //to be extracted from a data base
-app.use(cookieParser());
+app.use(cookieParser(cookieSecret));
 app.use(express.static("views"));
 app.use(cors());
 app.use(logger("dev"));

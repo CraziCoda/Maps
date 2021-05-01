@@ -18,7 +18,7 @@ passport.use(
       try {
         User.findOne({ email: username }).then((user) => {
           if (user != null) {
-            return done(null, false, { messsage: "username taken" });
+            return done(null, false, { messsage: "Username taken" });
           }
           User.create({
             email: username,
@@ -61,7 +61,7 @@ passport.use(
 const cookieExtractor = (req) => {
   let token = null;
   if (req && req.cookies) {
-    token = req.cookies["token"];
+    token = req.signedCookies["token"];
   }
   return token;
 };
