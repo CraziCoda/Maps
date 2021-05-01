@@ -1,3 +1,3 @@
 module.exports = {
-  secret: "okayhere",
+  secret: `?Gs(%Z423ajZ9"U=`,
 };
